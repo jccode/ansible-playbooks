@@ -1,0 +1,6 @@
+---
+
+installed_pkgs:
+  - git
+  - emacs
+

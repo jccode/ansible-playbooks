@@ -1,0 +1,16 @@
+---
+
+- name: Replace sources.list with aliyun sources, backup origin one as well.
+  template:
+    src: sources.list.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: '644'
+    backup: yes
+  when: ansible_distribution_release == "precise"
+
+- name: Install dependency packages
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: '{{ installed_pkgs }}'
+
