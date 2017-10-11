@@ -1,0 +1,19 @@
+---
+- name: Install shadowsocks dependencies
+  apt: name={{ item }} state=present
+  with_items:
+    - python-pip
+    - python-gevent
+
+- name: Install shadowsocks
+  pip: name=shadowsocks
+
+- name: Generate shadowsocks config file
+  template: src=shadowsocks.json.j2 dest=/etc/shadowsocks.json 
+
+- name: Generate shadowsocks init script
+  template: src=ssserver.conf.j2 dest=/etc/init/ssserver.conf 
+
+- name: Enable ssserver service to be started at boot
+  service: name=ssserver state=started enabled=yes
+

@@ -1,0 +1,7 @@
+---
+
+shadowsocks_server_port: "8388"
+shadowsocks_password: "pass"
+shadowsocks_method: "aes-256-cfb"
+shadowsocks_enable_manager_address: True
+shadowsocks_manager_address: "127.0.0.1:8383"
