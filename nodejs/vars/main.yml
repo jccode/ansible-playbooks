@@ -1,0 +1,12 @@
+---
+
+# choices: 6.x, 8.x
+nodejs_version: 8.x
+
+nodejs_use_registry: yes
+
+nodejs_registry: https://registry.npm.taobao.org
+
+nodejs_install_dependencies:
+  - python-software-properties
+

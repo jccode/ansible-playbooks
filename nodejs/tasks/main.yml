@@ -1,0 +1,18 @@
+
+- name: Install denpendencies
+  apt: name = {{ item }} state=present
+  with_items: '{{ nodejs_install_dependencies }}'
+
+- name: Download nodejs PPA setup script
+  get_url: url=https://deb.nodesource.com/setup_{{nodejs_version}} dest=/tmp/nodejs-setup.sh mode=0755
+
+- name: Run nodejs PPA setup script
+  shell: /tmp/nodejs-setup.sh
+
+- name: Install NodeJS & NPM
+  apt: name=nodejs state=present
+
+- name: Use custom registry
+  template: src=npmrc.j2 dest=~/.npmrc
+  when: nodejs_use_registry | bool
+
