@@ -1,0 +1,12 @@
+---
+
+shadowsocks_dependencies:
+  - python-pip
+  - python-gevent
+  
+shadowsocks_install_ssmgr: yes
+
+ssmgr_email_smtp_server: 'smtp.163.com'
+ssmgr_email_username: 'itbang'
+ssmgr_email_password: 'helloitbang'
+ssmgr_email_from: 'itbang@163.com'

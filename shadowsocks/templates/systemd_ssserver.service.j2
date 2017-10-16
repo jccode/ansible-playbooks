@@ -1,0 +1,12 @@
+[Unit]
+Description=Daemon to start shadowsocks server
+Wants=network-online.target
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/ssserver {% if shadowsocks_enable_manager_address | bool %}--manager-address {{ shadowsocks_manager_address }}{% endif %} -c /etc/shadowsocks.json
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

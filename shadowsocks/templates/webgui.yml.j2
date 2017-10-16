@@ -1,0 +1,28 @@
+type: m
+
+manager:
+  address: 127.0.0.1:{{ ssmgr_manager_port }}
+  password: '{{ ssmgr_manager_password }}'
+
+plugins:
+  flowSaver:
+    use: true
+  user:
+    use: true
+  account:
+    use: true
+  macAccount:
+    use: true
+  email:
+    use: true
+    type: 'smtp'
+    email: '{{ ssmgr_email_from }}'
+    username: '{{ ssmgr_email_username }}'
+    password: '{{ ssmgr_email_password }}'
+    host: '{{ ssmgr_email_smtp_server }}'
+  webgui:
+    use: true
+    host: '0.0.0.0'
+    port: '{{ ssmgr_webgui_port }}'
+
+db: 'webgui.sqlite'

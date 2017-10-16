@@ -1,0 +1,11 @@
+type: s
+
+shadowsocks:
+  address: {{ shadowsocks_manager_address }}
+  #portRange: 50000-51000,55000,55002
+
+manager:
+  address: 127.0.0.1:{{ ssmgr_manager_port }}
+  password: '{{ ssmgr_manager_password }}'
+
+db: 'db.sqlite'

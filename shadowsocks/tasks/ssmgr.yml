@@ -1,0 +1,25 @@
+---
+
+- name: Install shadowsocks-manager
+  npm: name=shadowsocks-manager global=yes
+
+- name: Create ssmgr configuration file folder
+  file: path=~/.ssmgr state=directory
+
+- name: Create ssmgr s type configuration file
+  template: src=ss.yml.j2 dest=~/.ssmgr/ss.yml
+
+- name: Create ssmgr webgui configuration file
+  template: src=webgui.yml.j2 dest=~/.ssmgr/webgui.yml 
+
+- name: Generate ssmgr type s systemd init script
+  copy: src=ssmgr.service dest=/etc/systemd/system/ssmgr.service 
+
+- name: Generate ssmgrgui systemd init script
+  copy: src=ssmgrgui.service dest=/etc/systemd/system/ssmgrgui.service 
+
+- name: Enable ssmgr service to be started at boot
+  service: name={{ item }} state=started enabled=yes
+  with_items:
+    - ssmgr
+    - ssmgrgui

@@ -5,3 +5,7 @@ shadowsocks_password: "pass"
 shadowsocks_method: "aes-256-cfb"
 shadowsocks_enable_manager_address: True
 shadowsocks_manager_address: "127.0.0.1:8383"
+
+ssmgr_manager_port: 4001
+ssmgr_manager_password: "123456"
+ssmgr_webgui_port: 8000

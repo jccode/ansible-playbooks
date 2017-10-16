@@ -1,9 +1,8 @@
 ---
+
 - name: Install shadowsocks dependencies
   apt: name={{ item }} state=present
-  with_items:
-    - python-pip
-    - python-gevent
+  with_items: '{{ shadowsocks_dependencies }}'
 
 - name: Install shadowsocks
   pip: name=shadowsocks
@@ -11,9 +10,21 @@
 - name: Generate shadowsocks config file
   template: src=shadowsocks.json.j2 dest=/etc/shadowsocks.json 
 
-- name: Generate shadowsocks init script
-  template: src=ssserver.conf.j2 dest=/etc/init/ssserver.conf 
+- name: Generate shadowsocks upstart init script
+  template: src=upstart_ssserver.conf.j2 dest=/etc/init/ssserver.conf 
+  when: 
+    - ansible_distribution_file_variety == "Debian" or ansible_distribution_file_variety == "Mandriva"
+    - ansible_distribution_major_version|int < 15
+
+- name: Generate shadowsocks systemd init script
+  template: src=systemd_ssserver.service.j2 dest=/etc/systemd/system/ssserver.service
+  when: 
+    - ansible_distribution_file_variety == "Debian" or ansible_distribution_file_variety == "Mandriva"
+    - ansible_distribution_major_version|int >= 15
 
 - name: Enable ssserver service to be started at boot
   service: name=ssserver state=started enabled=yes
 
+
+- import_tasks: ssmgr.yml
+  when: shadowsocks_install_ssmgr | bool
