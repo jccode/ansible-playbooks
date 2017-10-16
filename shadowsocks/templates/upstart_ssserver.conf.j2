@@ -12,8 +12,8 @@ respawn limit 5 60 # respawn max 5 times in 60 seconds
 # Essentially lets upstart know the process will detach itself to the background
 # expect daemon # fork
 
-# setuid ssuser
-# setgid ssuser
+setuid shadowsocks
+setgid shadowsocks
 
 script
     exec /usr/local/bin/ssserver {% if shadowsocks_enable_manager_address | bool %}--manager-address {{ shadowsocks_manager_address }}{% endif %} -c /etc/shadowsocks.json >/var/log/ssserver.log 2>&1

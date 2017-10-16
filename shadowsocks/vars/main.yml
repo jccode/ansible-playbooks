@@ -3,6 +3,8 @@
 shadowsocks_dependencies:
   - python-pip
   - python-gevent
+
+shadowsocks_home: '/home/shadowsocks'
   
 shadowsocks_install_ssmgr: yes
 

@@ -7,8 +7,11 @@
 - name: Install shadowsocks
   pip: name=shadowsocks
 
+- name: Add shadowsocks user
+  user: name=shadowsocks home=/home/shadowsocks shell=/usr/sbin/nologin comment="shadowsocks user"
+
 - name: Generate shadowsocks config file
-  template: src=shadowsocks.json.j2 dest=/etc/shadowsocks.json 
+  template: src=shadowsocks.json.j2 dest=/etc/shadowsocks.json owner=shadowsocks group=shadowsocks
 
 - name: Generate shadowsocks upstart init script
   template: src=upstart_ssserver.conf.j2 dest=/etc/init/ssserver.conf 

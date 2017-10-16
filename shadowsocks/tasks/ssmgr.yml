@@ -4,13 +4,13 @@
   npm: name=shadowsocks-manager global=yes
 
 - name: Create ssmgr configuration file folder
-  file: path=~/.ssmgr state=directory
+  file: path={{ shadowsocks_home }}/.ssmgr state=directory owner=shadowsocks group=shadowsocks
 
 - name: Create ssmgr s type configuration file
-  template: src=ss.yml.j2 dest=~/.ssmgr/ss.yml
+  template: src=ss.yml.j2 dest={{ shadowsocks_home }}/.ssmgr/ss.yml owner=shadowsocks group=shadowsocks
 
 - name: Create ssmgr webgui configuration file
-  template: src=webgui.yml.j2 dest=~/.ssmgr/webgui.yml 
+  template: src=webgui.yml.j2 dest={{ shadowsocks_home }}/.ssmgr/webgui.yml owner=shadowsocks group=shadowsocks
 
 - name: Generate ssmgr type s systemd init script
   copy: src=ssmgr.service dest=/etc/systemd/system/ssmgr.service 

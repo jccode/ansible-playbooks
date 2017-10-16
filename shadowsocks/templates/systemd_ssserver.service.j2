@@ -4,6 +4,8 @@ Wants=network-online.target
 After=network.target
 
 [Service]
+User=shadowsocks
+Group=shadowsocks
 Type=simple
 ExecStart=/usr/local/bin/ssserver {% if shadowsocks_enable_manager_address | bool %}--manager-address {{ shadowsocks_manager_address }}{% endif %} -c /etc/shadowsocks.json
 Restart=always

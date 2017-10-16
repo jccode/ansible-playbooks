@@ -4,6 +4,8 @@ Wants=network-online.target
 After=network.target
 
 [Service]
+User=shadowsocks
+Group=shadowsocks
 Type=simple
 ExecStart=/usr/bin/ssmgr -c ss.yml
 Restart=on-abort
