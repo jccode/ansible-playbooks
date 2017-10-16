@@ -7,10 +7,13 @@
   get_url: url=https://deb.nodesource.com/setup_{{nodejs_version}} dest=/tmp/nodejs-setup.sh mode=0755
 
 - name: Run nodejs PPA setup script
-  shell: /tmp/nodejs-setup.sh
+  shell: /tmp/nodejs-setup.sh 
 
 - name: Install NodeJS & NPM
-  apt: name=nodejs state=present
+  apt: name={{ item }} state=present update_cache=yes
+  with_items: 
+    - nodejs
+    - npm
 
 - name: Use custom registry
   template: src=npmrc.j2 dest=~/.npmrc
