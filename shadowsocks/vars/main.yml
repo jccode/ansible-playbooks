@@ -5,6 +5,7 @@ shadowsocks_dependencies:
   - python-gevent
 
 shadowsocks_home: '/home/shadowsocks'
+shadowsocks_config_folder: '{{ shadowsocks_home }}'
   
 shadowsocks_install_ssmgr: yes
 

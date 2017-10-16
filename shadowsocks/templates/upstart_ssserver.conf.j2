@@ -16,5 +16,5 @@ setuid shadowsocks
 setgid shadowsocks
 
 script
-    exec /usr/local/bin/ssserver {% if shadowsocks_enable_manager_address | bool %}--manager-address {{ shadowsocks_manager_address }}{% endif %} -c /etc/shadowsocks.json >/var/log/ssserver.log 2>&1
+    exec /usr/local/bin/ssserver {% if shadowsocks_enable_manager_address | bool %}--manager-address {{ shadowsocks_manager_address }}{% endif %} -c {{ shadowsocks_config_folder }}/shadowsocks.json >/var/log/ssserver.log 2>&1
 end script

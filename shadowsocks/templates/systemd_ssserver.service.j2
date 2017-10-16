@@ -7,7 +7,7 @@ After=network.target
 User=shadowsocks
 Group=shadowsocks
 Type=simple
-ExecStart=/usr/local/bin/ssserver {% if shadowsocks_enable_manager_address | bool %}--manager-address {{ shadowsocks_manager_address }}{% endif %} -c /etc/shadowsocks.json
+ExecStart=/usr/local/bin/ssserver {% if shadowsocks_enable_manager_address | bool %}--manager-address {{ shadowsocks_manager_address }}{% endif %} -c {{ shadowsocks_config_folder }}/shadowsocks.json
 Restart=always
 
 [Install]
